@@ -32,44 +32,50 @@ private class BooksViewModel: ObservableObject {
   @Published var books: [Book] = Book.samples
 }
 
-//class SearchableBooksViewModel: ObservableObject {
-//    @Published private var originalBooks = Book.samples
-//    @Published var books = [Book]()       // empty initially
-//    @Published var searchTerm: String = ""
-//
-//    init() {
-//        Publishers.CombineLatest($originalBooks, $searchTerm)       // 1
-//            .map { books, searchTerm in                             // 2
-//                books.filter { book in                              // 3
-//                    searchTerm.isEmpty ? true : (book.title.matches(searchTerm) || book.author.matches(searchTerm))
-//                }
-//            }
-//            .assign(to: &$books)
-//    }
-//}
+private extension String {
+  func matches(_ searchTerm: String) -> Bool {
+    self.range(of: searchTerm, options: .caseInsensitive) != nil
+  }
+}
+
 
 class SearchableBooksViewModel: ObservableObject {
-    @Published private var originalBooks = Book.samples
-    @Published var books = [Book]()         // empty initially
-    @Published var searchTerm: String = ""
-    var myReadingList = [Book]()            // empty initially
-    
-    init() {
-        books = originalBooks
-    }
-    
-    func addToReadingList(_ book: Book) {
-        // take the give book and add it to my reading list
-        myReadingList.append(book)
-    }
+  @Published private var originalBooks = Book.samples
+  @Published var books = [Book]()
+  @Published var searchTerm: String = ""
+  var myReadingList = [Book]()
+  
+  init() {
+    Publishers.CombineLatest($originalBooks, $searchTerm)
+      .map { books, searchTerm in
+        books.filter { book in
+          searchTerm.isEmpty ? true : (book.title.matches(searchTerm) || book.author.matches(searchTerm))
+        }
+      }
+      .assign(to: &$books)
+  }
+  
+  func addToReadingList(_ book: Book) {
+    // take the give book and add it to my reading list
+    myReadingList.append(book)
+  }
 }
 
 struct SearchableBooksListView: View {
-    // needs a NavView for Search field to show up
+  // needs a NavView for Search field to show up
   @StateObject var viewModel = SearchableBooksViewModel()
   var body: some View {
     List(viewModel.books) { book in
       SearchableBookRowView(book: book)
+        .swipeActions {
+          Button {
+            viewModel.addToReadingList(book)
+            viewModel.searchTerm = ""
+          } label: {
+            Image(systemName: "plus")
+          }
+          
+        }
     }
     .searchable(text: $viewModel.searchTerm)
   }
@@ -88,19 +94,12 @@ struct SearchableBookRowView: View {
         Text("\(book.pages) pages")
           .font(.subheadline)
       }
-      Spacer()
-        Button("Add") {
-            // I've found my book - add to my reading list and clear search
-            viewModel.addToReadingList(book)
-            viewModel.searchTerm = ""           // blank search term
-            viewModel.books = originalBooks     // repopulate with initial list
-        }
     }
   }
 }
 
 struct SearchableBookList_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchableBooksListView()
-    }
+  static var previews: some View {
+    SearchableBooksListView()
+  }
 }
