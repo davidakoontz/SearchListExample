@@ -11,6 +11,7 @@
 		63FB9FFB28D0D3CD0009DD8A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FB9FFA28D0D3CD0009DD8A /* ContentView.swift */; };
 		63FB9FFD28D0D3D00009DD8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63FB9FFC28D0D3D00009DD8A /* Assets.xcassets */; };
 		63FBA00128D0D3D00009DD8A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63FBA00028D0D3D00009DD8A /* Preview Assets.xcassets */; };
+		63FBA00828D0D4280009DD8A /* SearchableBookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FBA00728D0D4280009DD8A /* SearchableBookList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		63FB9FFC28D0D3D00009DD8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63FB9FFE28D0D3D00009DD8A /* SearchListExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SearchListExample.entitlements; sourceTree = "<group>"; };
 		63FBA00028D0D3D00009DD8A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		63FBA00728D0D4280009DD8A /* SearchableBookList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableBookList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				63FB9FF828D0D3CD0009DD8A /* SearchListExampleApp.swift */,
 				63FB9FFA28D0D3CD0009DD8A /* ContentView.swift */,
+				63FBA00728D0D4280009DD8A /* SearchableBookList.swift */,
 				63FB9FFC28D0D3D00009DD8A /* Assets.xcassets */,
 				63FB9FFE28D0D3D00009DD8A /* SearchListExample.entitlements */,
 				63FB9FFF28D0D3D00009DD8A /* Preview Content */,
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63FBA00828D0D4280009DD8A /* SearchableBookList.swift in Sources */,
 				63FB9FFB28D0D3CD0009DD8A /* ContentView.swift in Sources */,
 				63FB9FF928D0D3CD0009DD8A /* SearchListExampleApp.swift in Sources */,
 			);

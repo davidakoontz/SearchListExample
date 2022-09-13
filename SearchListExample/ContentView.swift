@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            VStack {
+                Text("Hello, world!")
+                SearchableBooksListView()   // needs a NavView for Search field to show up
+                
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
